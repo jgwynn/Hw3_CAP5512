@@ -12,7 +12,7 @@ public class RunIPD extends Object
    public static void main(String args[])
       {
       int i;
-      int maxSteps = 0;
+      int maxSteps = 5;
 
       Strategy player1, player2;
       IteratedPD ipd;

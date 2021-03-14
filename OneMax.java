@@ -34,11 +34,12 @@ public class OneMax extends FitnessFunction{
 //  COMPUTE A CHROMOSOME'S RAW FITNESS *************************************
 
 	public void doRawFitness(Chromo X){
-
-		X.rawFitness = 0;
-		for (int z=0; z<Parameters.numGenes * Parameters.geneSize; z++){
-			if (X.chromo.charAt(z) == '1') X.rawFitness += 1;
-		}
+		
+		
+		//do the IPD.
+		
+		
+		
 	}
 
 //  PRINT OUT AN INDIVIDUAL GENE TO THE SUMMARY FILE *********************************

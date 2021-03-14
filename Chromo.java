@@ -13,7 +13,7 @@ public class Chromo
 *                            INSTANCE VARIABLES                                *
 *******************************************************************************/
 
-	public String chromo;
+	public int[] chromo;
 	public double rawFitness;
 	public double sclFitness;
 	public double proFitness;
@@ -23,6 +23,7 @@ public class Chromo
 *******************************************************************************/
 
 	private static double randnum;
+	private static int possibilities = 16;
 
 /*******************************************************************************
 *                              CONSTRUCTORS                                    *
@@ -32,14 +33,12 @@ public class Chromo
 
 		//  Set gene values to a randum sequence of 1's and 0's
 		char geneBit;
-		chromo = "";
-		for (int i=0; i<Parameters.numGenes; i++){
-			for (int j=0; j<Parameters.geneSize; j++){
-				randnum = Search.r.nextDouble();
-				if (randnum > 0.5) geneBit = '0';
-				else geneBit = '1';
-				this.chromo = chromo + geneBit;
-			}
+		this.chromo = new int[possibilities];
+		for (int j=0; j< possibilities; j++){
+			randnum = Search.r.nextDouble();
+			if (randnum > 0.5) geneBit = '0';
+			else geneBit = '1';
+			this.chromo[j] = geneBit;
 		}
 
 		this.rawFitness = -1;   //  Fitness not yet evaluated
@@ -57,7 +56,7 @@ public class Chromo
 	public String getGeneAlpha(int geneID){
 		int start = geneID * Parameters.geneSize;
 		int end = (geneID+1) * Parameters.geneSize;
-		String geneAlpha = this.chromo.substring(start, end);
+		String geneAlpha = Arrays.toString(this.chromo);
 		return (geneAlpha);
 	}
 
@@ -87,7 +86,7 @@ public class Chromo
 		char geneBit;
 		geneValue = 0;
 		geneAlpha = getGeneAlpha(geneID);
-		for (int i=Parameters.geneSize-1; i>=0; i--){
+		for (int i=possibilities; i>=0; i--){
 			geneBit = geneAlpha.charAt(i);
 			if (geneBit == '1') geneValue = geneValue + (int) Math.pow(2.0, Parameters.geneSize-i-1);
 		}
@@ -98,21 +97,21 @@ public class Chromo
 
 	public void doMutation(){
 
-		String mutChromo = "";
-		char x;
+		int[] mutChromo = new int[possibilities];
+		int x;
 
 		switch (Parameters.mutationType){
 
 		case 1:     //  Replace with new random number
 
-			for (int j=0; j<(Parameters.geneSize * Parameters.numGenes); j++){
-				x = this.chromo.charAt(j);
+			for (int j=0; j<(possibilities); j++){
+				x = this.chromo[j];
 				randnum = Search.r.nextDouble();
 				if (randnum < Parameters.mutationRate){
-					if (x == '1') x = '0';
-					else x = '1';
+					if (x == 1) x = 0;
+					else x = 1;
 				}
-				mutChromo = mutChromo + x;
+				mutChromo[j] = x;
 			}
 			this.chromo = mutChromo;
 			break;
@@ -169,11 +168,17 @@ public class Chromo
 		case 1:     //  Single Point Crossover
 
 			//  Select crossover point
-			xoverPoint1 = 1 + (int)(Search.r.nextDouble() * (Parameters.numGenes * Parameters.geneSize-1));
+			xoverPoint1 = 1 + (int)(Search.r.nextDouble() * (possibilities-1));
 
 			//  Create child chromosome from parental material
-			child1.chromo = parent1.chromo.substring(0,xoverPoint1) + parent2.chromo.substring(xoverPoint1);
-			child2.chromo = parent2.chromo.substring(0,xoverPoint1) + parent1.chromo.substring(xoverPoint1);
+			for(int i=0; i < xoverPoint1; i++) {
+				child1.chromo[i] = parent1.chromo[i];
+				child2.chromo[i] = parent2.chromo[i];
+			}
+			for(int i=0; i < 16; i++) {
+				child1.chromo[i] = parent1.chromo[i];
+				child2.chromo[i] = parent2.chromo[i];
+			}
 			break;
 
 		case 2:     //  Two Point Crossover

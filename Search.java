@@ -80,7 +80,7 @@ public class Search {
 	//  Write Parameters To Summary Output File
 		String summaryFileName = Parameters.expID + "_summary.txt";
 		FileWriter summaryOutput = new FileWriter(summaryFileName);
-		parmValues.outputParameters(summaryOutput);
+		Parameters.outputParameters(summaryOutput);
 
 	//	Set up Fitness Statistics matrix
 		fitnessStats = new double[2][Parameters.generations];
@@ -112,16 +112,11 @@ public class Search {
 		bestOfGenChromo = new Chromo();
 		bestOfRunChromo = new Chromo();
 		bestOverAllChromo = new Chromo();
-
-		if (Parameters.minORmax.equals("max")){
-			defaultBest = 0;
-			defaultWorst = 999999999999999999999.0;
-		}
-		else{
-			defaultBest = 999999999999999999999.0;
-			defaultWorst = 0;
-		}
-
+		
+		//always looking for the highest fitness
+		defaultBest = 0;
+		defaultWorst = 999999999999999999999.0;
+		
 		bestOverAllChromo.rawFitness = defaultBest;
 
 		//  Start program for multiple runs
