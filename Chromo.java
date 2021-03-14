@@ -32,12 +32,12 @@ public class Chromo
 	public Chromo(){
 
 		//  Set gene values to a randum sequence of 1's and 0's
-		char geneBit;
+		int geneBit;
 		this.chromo = new int[possibilities];
 		for (int j=0; j< possibilities; j++){
 			randnum = Search.r.nextDouble();
-			if (randnum > 0.5) geneBit = '0';
-			else geneBit = '1';
+			if (randnum > 0.5) geneBit = 0;
+			else geneBit = 1;
 			this.chromo[j] = geneBit;
 		}
 

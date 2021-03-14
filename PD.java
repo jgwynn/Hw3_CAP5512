@@ -33,9 +33,9 @@ public class PD extends FitnessFunction{
 
 //  COMPUTE A CHROMOSOME'S RAW FITNESS *************************************
 
-	public void doRawFitness(Chromo X){
+	public void doRawFitness(Chromo[] member){
 		
-		
+		RunIPD.RunIPDFitness(member);
 		//do the IPD.
 		
 		

@@ -29,5 +29,10 @@ public class Strategy extends Object
    public void saveMyMove(int move)  { myLastMove = move; }
    public int getMyLastMove()  { return myLastMove; }
    public String getName()  { return name; }
+
+public void setReaction(Chromo chromo) {
+	// TODO Auto-generated method stub
+	System.out.println("if you see this, run");
+}
    }  /* class Strategy */
 

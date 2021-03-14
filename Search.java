@@ -9,6 +9,8 @@ import java.text.*;
 
 public class Search {
 
+private static final int possibility = 16;
+
 /*******************************************************************************
 *                           INSTANCE VARIABLES                                 *
 *******************************************************************************/
@@ -139,19 +141,22 @@ public class Search {
 				sumRawFitness = 0;
 				sumRawFitness2 = 0;
 				bestOfGenChromo.rawFitness = defaultBest;
+				
+				for(int i = 0; i < Parameters.popSize; i++) {
+					member[i].rawFitness = 0;
+					member[i].sclFitness = 0;
+					member[i].proFitness = 0;
+				}
+				
+				//run raw fitness on all of them.
+				problem.doRawFitness(member);
 
 				//	Test Fitness of Each Member
 				for (int i=0; i<Parameters.popSize; i++){
 
-					member[i].rawFitness = 0;
-					member[i].sclFitness = 0;
-					member[i].proFitness = 0;
-
-					problem.doRawFitness(member[i]);
-
 					sumRawFitness = sumRawFitness + member[i].rawFitness;
 					sumRawFitness2 = sumRawFitness2 +
-						member[i].rawFitness * member[i].rawFitness;
+							member[i].rawFitness * member[i].rawFitness;
 
 					if (Parameters.minORmax.equals("max")){
 						if (member[i].rawFitness > bestOfGenChromo.rawFitness){
