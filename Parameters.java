@@ -60,14 +60,14 @@ public class Parameters
 		selectType = Integer.parseInt(parmInput.readLine().substring(30).trim());
 		scaleType = Integer.parseInt(parmInput.readLine().substring(30).trim());
 
-		xoverType = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		//xoverType = Integer.parseInt(parmInput.readLine().substring(30).trim());
 		xoverRate = Double.parseDouble(parmInput.readLine().substring(30).trim());
 		mutationType = Integer.parseInt(parmInput.readLine().substring(30).trim());
 		mutationRate = Double.parseDouble(parmInput.readLine().substring(30).trim());
 
 		seed = Long.parseLong(parmInput.readLine().substring(30).trim());
-		numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		geneSize = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		//numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		//geneSize = Integer.parseInt(parmInput.readLine().substring(30).trim());
 
 		parmInput.close();
 

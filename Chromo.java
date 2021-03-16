@@ -149,6 +149,15 @@ public class Chromo
 			return(j);
 
 		case 2:     //  Tournament Selection
+			int winner =  Search.r.nextInt(Parameters.popSize);
+			int challenger = Search.r.nextInt(Parameters.popSize);
+			while(winner == challenger){
+				challenger = Search.r.nextInt(Parameters.popSize);
+			}
+			if(Search.member[winner].rawFitness < Search.member[challenger].rawFitness){ //change to a percentage gamble.
+				winner = challenger;
+			}
+			return winner;
 
 		default:
 			System.out.println("ERROR - No selection method selected");
@@ -163,7 +172,7 @@ public class Chromo
 		int xoverPoint1;
 		int xoverPoint2;
 
-		switch (Parameters.xoverType){
+		switch (1){
 
 		case 1:     //  Single Point Crossover
 
