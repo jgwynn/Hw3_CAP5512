@@ -2,8 +2,8 @@ Experiment ID                :onemax
 Problem Type                 :OM
 Data Input File Name         :NA
 Number of Runs               :10
-Generations per Run          :10
-Population Size              :10
+Generations per Run          :100
+Population Size              :100
 Selection Method (1)         :1
 Fitness Scaling Type (2)     :0
 Crossover Type (3)           :1

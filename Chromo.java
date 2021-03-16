@@ -54,10 +54,10 @@ public class Chromo
 	//  Get Alpha Represenation of a Gene **************************************
 
 	public String getGeneAlpha(int geneID){
-		int start = geneID * Parameters.geneSize;
-		int end = (geneID+1) * Parameters.geneSize;
-		String geneAlpha = Arrays.toString(this.chromo);
-		return (geneAlpha);
+//		int start = geneID * Parameters.geneSize;
+//		int end = (geneID+1) * Parameters.geneSize;
+//		String geneAlpha = Arrays.toString(this.chromo);
+		return Arrays.toString(this.chromo);
 	}
 
 	//  Get Integer Value of a Gene (Positive or Negative, 2's Compliment) ****
@@ -175,7 +175,7 @@ public class Chromo
 				child1.chromo[i] = parent1.chromo[i];
 				child2.chromo[i] = parent2.chromo[i];
 			}
-			for(int i=0; i < 16; i++) {
+			for(int i=xoverPoint1; i < 16; i++) {
 				child1.chromo[i] = parent1.chromo[i];
 				child2.chromo[i] = parent2.chromo[i];
 			}

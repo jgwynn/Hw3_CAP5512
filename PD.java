@@ -37,9 +37,6 @@ public class PD extends FitnessFunction{
 		
 		RunIPD.RunIPDFitness(member);
 		//do the IPD.
-		
-		
-		
 	}
 
 //  PRINT OUT AN INDIVIDUAL GENE TO THE SUMMARY FILE *********************************
@@ -47,12 +44,12 @@ public class PD extends FitnessFunction{
 	public void doPrintGenes(Chromo X, FileWriter output) throws java.io.IOException{
 
 		for (int i=0; i<Parameters.numGenes; i++){
-			Hwrite.right(X.getGeneAlpha(i),11,output);
+			Hwrite.right(X.getGeneAlpha(i),16,output);
 		}
 		output.write("   RawFitness");
 		output.write("\n        ");
 		for (int i=0; i<Parameters.numGenes; i++){
-			Hwrite.right(X.getPosIntGeneValue(i),11,output);
+			Hwrite.right(X.getGeneAlpha(i),16,output);
 		}
 		Hwrite.right((int) X.rawFitness,13,output);
 		output.write("\n\n");

@@ -373,6 +373,11 @@ private static final int possibility = 16;
 		}
 
 		summaryOutput.write("\n");
+		System.out.println("");
+		for(int i = 0; i < 16; i++) {
+//			summaryOutput.write(((char)bestOverAllChromo.chromo[i]));
+			System.out.print(bestOverAllChromo.chromo[i]);
+		}
 		summaryOutput.close();
 
 		System.out.println();
@@ -380,6 +385,7 @@ private static final int possibility = 16;
 		dateAndTime = Calendar.getInstance(); 
 		Date endTime = dateAndTime.getTime();
 		System.out.println("End  :  " + endTime);
+		
 
 	} // End of Main Class
 

@@ -42,8 +42,8 @@ public class RunIPD extends Object
     	  }
       }
 
-      System.out.printf(" Player 1 score = %d\n", ipd.player1Score());
-      System.out.printf(" Player 2 score = %d\n", ipd.player2Score());
+//      System.out.printf(" Player 1 score = %d\n", ipd.player1Score());
+//      System.out.printf(" Player 2 score = %d\n", ipd.player2Score());
 
       }  /* main */
    }  /* class RunIPD */

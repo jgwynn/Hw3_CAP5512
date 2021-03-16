@@ -7,7 +7,7 @@ public class StrategyTest extends Strategy
 	 * Encoding for tit-for-tat strategy.
 	 */
 
-	public String lastFourMoves;
+	public StringBuilder lastFourMoves;
 	public Chromo reaction;
 
 	// 0 = defect, 1 = cooperate
@@ -16,7 +16,8 @@ public class StrategyTest extends Strategy
 	{
 		name = "Our Strategy";
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~maybe change hardcoded first 4 moves
-		lastFourMoves = "11 11";
+		lastFourMoves = new StringBuilder();
+		lastFourMoves.append("1100");
 		this.setReaction(thing);
 
 		// 1010 = 1 our move, 0 opponents move, 
@@ -25,7 +26,17 @@ public class StrategyTest extends Strategy
 	public int nextMove()
 	{
 		double randnum;
-		switch(lastFourMoves) {
+		//updates the last moves of our opponent.
+		char lastMove = lastFourMoves.charAt(3);
+		lastFourMoves.setCharAt(1, lastMove);
+		lastFourMoves.setCharAt(3, (char) (this.opponentLastMove + 48));
+		//updates the last moves of us
+		char ourlastMove = lastFourMoves.charAt(2);
+		lastFourMoves.setCharAt(0, lastMove);
+		lastFourMoves.setCharAt(2, (char) (this.myLastMove + 48));
+		
+		
+		switch(lastFourMoves.toString()) {
 		case "0000": return this.reaction.chromo[0];
 		case "0001": return this.reaction.chromo[1];
 		case "0010": return this.reaction.chromo[2];
@@ -49,9 +60,9 @@ public class StrategyTest extends Strategy
 		}
 	}  /* nextMove */
 	
-	public String getLastFourMoves() {return lastFourMoves;}
+	//public String getLastFourMoves() {return lastFourMoves;}
 
-	public void setLastFourMoves(String lastFourMoves) {this.lastFourMoves = lastFourMoves;}
+	//public void setLastFourMoves(String lastFourMoves) {this.lastFourMoves = lastFourMoves;}
 
 	public Chromo getReaction() {return reaction;}
 	
