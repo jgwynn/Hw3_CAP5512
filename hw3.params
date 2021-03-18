@@ -3,7 +3,7 @@ Problem Type                 :OM
 Data Input File Name         :NA
 Number of Runs               :10
 Generations per Run          :100
-Population Size              :100
+Population Size              :50
 Selection Method (1)         :1
 Fitness Scaling Type (2)     :0
 Crossover Rate (4)           :0.8
@@ -11,7 +11,7 @@ Mutation Type (5)            :1
 Mutation Rate (6)            :0.005
 Random Number Seed           :75982
 Number of Genes/Points (7)   :1
-Size of Genes (18)           :100
+IPD iterations(18)           :20
 
 Notes:
 

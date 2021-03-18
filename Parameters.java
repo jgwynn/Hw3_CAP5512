@@ -36,8 +36,9 @@ public class Parameters
 	public static double mutationRate;
 
 	public static long seed;
-	public static int numGenes;
 	public static int geneSize;
+	public static int numGenes;
+	public static int maxSteps;
 
 /*******************************************************************************
 *                              CONSTRUCTORS                                    *
@@ -66,8 +67,8 @@ public class Parameters
 		mutationRate = Double.parseDouble(parmInput.readLine().substring(30).trim());
 
 		seed = Long.parseLong(parmInput.readLine().substring(30).trim());
-		//numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		//geneSize = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		maxSteps = Integer.parseInt(parmInput.readLine().substring(30).trim());
 
 		parmInput.close();
 
@@ -108,7 +109,7 @@ public class Parameters
 
 		output.write("Random Number Seed           :  " + seed + "\n");
 		output.write("Number of Genes/Points       :  " + numGenes + "\n");
-		output.write("Size of Genes                :  " + geneSize + "\n");
+		output.write("Number of IPD iterations     :  " + maxSteps + "\n");
 
 		output.write("\n\n");
 

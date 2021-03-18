@@ -28,11 +28,11 @@ public class IteratedPD extends Object
 //           p1.getName(), p2.getName() );
       }  /* IteratedPD */
 
-   public void runSteps(int maxSteps)
+   public void runSteps()
       {
       int i;
 
-      for (i=0; i<maxSteps; i++)
+      for (i=0; i<Parameters.maxSteps; i++)
          {
          pd.playPD();
          p1Score += pd.getPlayer1Payoff();

@@ -38,6 +38,8 @@ private static final int possibility = 16;
 	public static double sumRawFitness2;	// sum of squares of fitness
 	public static double sumSclFitness;
 	public static double sumProFitness;
+	public static double sumOfSquaresAvgFitPerGen[];
+	public static double sumOfSquaresPerGenBestFit[];
 	public static double defaultBest;
 	public static double defaultWorst;
 
@@ -86,8 +88,12 @@ private static final int possibility = 16;
 
 	//	Set up Fitness Statistics matrix
 		fitnessStats = new double[2][Parameters.generations];
+		sumOfSquaresAvgFitPerGen = new double[Parameters.generations];
+		sumOfSquaresPerGenBestFit = new double[Parameters.generations];
 		for (int i=0; i<Parameters.generations; i++){
 			fitnessStats[0][i] = 0;
+			sumOfSquaresAvgFitPerGen[i] = 0;
+			sumOfSquaresPerGenBestFit[i] = 0;
 			fitnessStats[1][i] = 0;
 		}
 
@@ -197,6 +203,8 @@ private static final int possibility = 16;
 				// Accumulate fitness statistics
 				fitnessStats[0][G] += sumRawFitness / Parameters.popSize;
 				fitnessStats[1][G] += bestOfGenChromo.rawFitness;
+				sumOfSquaresAvgFitPerGen[G] = sumOfSquaresAvgFitPerGen[G] +((sumRawFitness / Parameters.popSize) * (sumRawFitness / Parameters.popSize));
+				sumOfSquaresPerGenBestFit[G] = sumOfSquaresPerGenBestFit[G] + (bestOfGenChromo.rawFitness * bestOfGenChromo.rawFitness);
 
 				averageRawFitness = sumRawFitness / Parameters.popSize;
 				stdevRawFitness = Math.sqrt(
@@ -364,11 +372,17 @@ private static final int possibility = 16;
 		problem.doPrintGenes(bestOverAllChromo, summaryOutput);
 
 		//	Output Fitness Statistics matrix
-		summaryOutput.write("Gen                 AvgFit              BestFit \n");
+		summaryOutput.write("Gen            AvgFit              AvgFitSD            BestFit Avg         BestFitSD \n");
 		for (int i=0; i<Parameters.generations; i++){
 			Hwrite.left(i, 15, summaryOutput);
 			Hwrite.left(fitnessStats[0][i]/Parameters.numRuns, 20, 2, summaryOutput);
+			Hwrite.left(Math.sqrt( Math.abs(sumOfSquaresAvgFitPerGen[i] -
+			          fitnessStats[0][i]*fitnessStats[0][i]/Parameters.numRuns)
+			          /(Parameters.numRuns-1)), 20, 2, summaryOutput);
 			Hwrite.left(fitnessStats[1][i]/Parameters.numRuns, 20, 2, summaryOutput);
+			Hwrite.left(Math.sqrt( Math.abs(sumOfSquaresPerGenBestFit[i] -
+			          fitnessStats[1][i]*fitnessStats[1][i]/Parameters.numRuns)
+			          /(Parameters.numRuns-1)), 20, 2, summaryOutput);
 			summaryOutput.write("\n");
 		}
 

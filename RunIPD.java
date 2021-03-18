@@ -12,7 +12,6 @@ public class RunIPD extends Object
    public static void RunIPDFitness(Chromo[] members)
       {
       //int i;
-      int maxSteps = 5;
 
       Strategy player1, player2;
       IteratedPD ipd = null;
@@ -36,7 +35,7 @@ public class RunIPD extends Object
     	  for(int BLUE = RED+1; BLUE< members.length; BLUE++) {
     		  player2 = new StrategyTest(members[BLUE]);
     		  ipd = new IteratedPD(player1, player2);
-    		  ipd.runSteps(maxSteps);
+    		  ipd.runSteps();
     		  members[RED].rawFitness+=ipd.p1Score;
     		  members[BLUE].rawFitness+=ipd.p2Score;
     	  }
